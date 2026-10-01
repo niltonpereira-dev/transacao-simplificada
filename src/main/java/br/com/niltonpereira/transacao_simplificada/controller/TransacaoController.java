@@ -1,0 +1,27 @@
+package br.com.niltonpereira.transacao_simplificada.controller;
+
+
+import br.com.niltonpereira.transacao_simplificada.dto.TransacaoDTO;
+import br.com.niltonpereira.transacao_simplificada.service.TransacaoService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/transfer")
+public class TransacaoController {
+
+    private final TransacaoService transacaoService;
+
+    public TransacaoController(TransacaoService transacaoService) {
+        this.transacaoService = transacaoService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> realizarTransacao(@RequestBody TransacaoDTO transacaoDTO){
+        transacaoService.transferirValores(transacaoDTO);
+        return ResponseEntity.accepted().build();
+    }
+}

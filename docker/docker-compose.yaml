@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: transacao-simplificada-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: transacao_simplificada
+    volumes:
+      - transacao_simplificada_data:/var/lib/postgresql/data
+
+volumes:
+  transacao_simplificada_data:
